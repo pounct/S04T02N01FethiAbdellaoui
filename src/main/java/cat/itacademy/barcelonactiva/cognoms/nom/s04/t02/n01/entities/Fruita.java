@@ -19,3 +19,5 @@ public class Fruita {
 	private int quantitatQuilos;
 
 }
+
+// localhost:port/h2-console
