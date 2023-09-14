@@ -4,20 +4,49 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Entity
-@Data @AllArgsConstructor @NoArgsConstructor @ToString
 public class Fruita {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String nom;
 	private int quantitatQuilos;
+	
+	public Fruita() {
+		super();
+	}
+	public Fruita(Long id, String nom, int quantitatQuilos) {
+		super();
+		this.id = id;
+		this.nom = nom;
+		this.quantitatQuilos = quantitatQuilos;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	public String getNom() {
+		return nom;
+	}
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	public int getQuantitatQuilos() {
+		return quantitatQuilos;
+	}
+	public void setQuantitatQuilos(int quantitatQuilos) {
+		this.quantitatQuilos = quantitatQuilos;
+	}
+	@Override
+	public String toString() {
+		return "Fruita [id=" + id + ", nom=" + nom + ", quantitatQuilos=" + quantitatQuilos + "]";
+	}
+	
+	
+	
+	
 
 }
-
-// localhost:port/h2-console

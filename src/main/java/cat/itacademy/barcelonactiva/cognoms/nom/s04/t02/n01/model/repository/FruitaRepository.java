@@ -6,6 +6,6 @@ import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.entities.Fruita;
 
 public interface FruitaRepository extends JpaRepository<Fruita, Long> {
 	
-	public Fruita findByNom(String nom);
+	//public Fruita findByNom(String nom);
 
 }
