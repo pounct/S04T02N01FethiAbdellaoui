@@ -1,42 +1,57 @@
 package cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.controllers;
 
 import java.util.List;
+import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.entities.Fruita;
-import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.model.repository.FruitaRepository;
+import com.ITAcademy.entities.Fruita;
+import com.ITAcademy.model.repository.FruitaRepository;
 
 @RestController
-
-public class FruitaController {
+public class FruitaController implements IFruitaController {
+	@Autowired
 	FruitaRepository fruitaRepository;
+
 	@PostMapping("/fruita/add")
-	void addFruita(Fruita fruita) {
+	@Override
+	public void add(@RequestBody Fruita fruita) {
+		// add fruita
 		fruitaRepository.save(fruita);
 	}
+
 	@PutMapping("/fruita/update")
-	void updateFruita(Fruita fruita) {
+	@Override
+	public void update(@RequestBody Fruita fruita) {
+		// update fruita
 		fruitaRepository.save(fruita);
 	}
+
 	@DeleteMapping("/fruita/delete/{id}")
-	void deleteFruita(Long id) {
-		//Optional<Fruita> fruita=fruitaRepository.findById(null);
+	@Override
+	public void delete(Long id) {
+		// delete fruita
 		fruitaRepository.deleteById(id);
 	}
-	@SuppressWarnings("deprecation")
+
+	@Override
 	@GetMapping("/fruita/getOne/{id}")
-	public void getOneFruita(Long id) {
-		Fruita fruita = fruitaRepository.getById(id);
-	} 
-	
+	public Optional<Fruita> getOne(Long id) {
+		// getOne Fruita
+		return fruitaRepository.findById(id);
+	}
+
 	@GetMapping("/fruita/getAll")
-	public void getAllFruitas() {
-		List<Fruita> fruitas= fruitaRepository.findAll();
+	@Override
+	public List<Fruita> getAll() {
+		// getAll Fruites
+		return fruitaRepository.findAll();
 	}
 
 }
