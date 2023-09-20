@@ -1,4 +1,4 @@
-package cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.controllers;
+package cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.model.services;
 
 import java.util.List;
 import java.util.Optional;
@@ -10,49 +10,47 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.model.domain.Fruita;
-import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.model.services.FruitaService;
+import cat.itacademy.barcelonactiva.cognoms.nom.s04.t02.n01.model.repository.FruitaRepository;
 
-@RestController
-public class FruitaController implements IFruitaController {
+public class FruitaService implements IFruitaService{
 
 	@Autowired
-	FruitaService fruitaService;
+	FruitaRepository fruitaRepository;
 
 	@PostMapping("/fruita/add")
 	@Override
 	public void add(@RequestBody Fruita fruita) {
 		// add fruita
-		fruitaService.add(fruita);
+		fruitaRepository.save(fruita);
 	}
 
 	@PutMapping("/fruita/update")
 	@Override
 	public void update(@RequestBody Fruita fruita) {
 		// update fruita
-		fruitaService.update(fruita);
+		fruitaRepository.save(fruita);
 	}
 
 	@DeleteMapping("/fruita/delete/{id}")
 	@Override
 	public void delete(@PathVariable("id") Long id) {
 		// delete fruita
-		fruitaService.delete(id);
+		fruitaRepository.deleteById(id);
 	}
 
 	@Override
 	@GetMapping("/fruita/getOne/{id}")
 	public Optional<Fruita> getOne(@PathVariable("id") Long id) {
-		return fruitaService.getOne(id);
+		return fruitaRepository.findById(id);
 	}
 
 	@GetMapping("/fruita/getAll")
 	@Override
 	public List<Fruita> getAll() {
 		// getAll Fruites
-		return fruitaService.getAll();
+		return fruitaRepository.findAll();
 	}
 
 }
